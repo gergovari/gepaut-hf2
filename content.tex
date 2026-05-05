@@ -1,10 +1,21 @@
 \section{Feladat}
+
+\subsection{Cél}
+Egy csomag mozgatása egy gyári környezetben, a szintkülönbség áthídalásához a csomag felemelése és tovább tolása.
+\begin{figure}[!hbt]
+    \centering
+    \includegraphics[width=0.5\textwidth]{res/imgs/drawing.jpg}
+    \caption{Grafikus szimuláció}
+    \label{fig:drawing}
+\end{figure}
+
+\newpage
+\subsection{Megoldás}
 A feladatban egy csomag mozgatását oldjuk meg szállítószalaggon.
 A csomag az alsó szállítószalagon jön be, ahol szenzor figyeli a csomag jelenlétét.
 Amint a csomag megérkezik az alsó munkahenger kitolja ezzel felemelve.
 Szenzor figyeli az alsó munkahengert, melynek hatására a rendszer kitolja a felső munkahengert ezzel továbbítva a csomagot ami kiugrik a munkaterületről.
 A végén a munkahengerek visszatérnek alaphelyzetükbe.
-
 \begin{figure}[!hbt]
     \centering
     \includegraphics[width=0.5\textwidth]{res/imgs/PLC_PRG_sfc.png}
@@ -31,6 +42,7 @@ A végén a munkahengerek visszatérnek alaphelyzetükbe.
 \newpage
 A fő vezérlés SFC-ben íródott, az állapotokat pedig LD-ben valósítottuk meg.
 
+A csomag érkezésekor a függőleges munkahengert kitoljuk. (Mivel két bemenettel lehet vezérelni, az ellentétes állapotot negáljuk.)
 \begin{figure}[!hbt]
     \centering
     \includegraphics[width=0.9\textwidth]{res/imgs/package_arrived_ld.png}
@@ -38,6 +50,7 @@ A fő vezérlés SFC-ben íródott, az állapotokat pedig LD-ben valósítottuk 
     \label{fig:ld_arrived}
 \end{figure}
 
+Amint felér a csomag, a vízszintes munkahengerrel kitoljuk a szállítószalagra.
 \begin{figure}[!hbt]
     \centering
     \includegraphics[width=0.9\textwidth]{res/imgs/push_package_active_ld.png}
@@ -45,6 +58,7 @@ A fő vezérlés SFC-ben íródott, az állapotokat pedig LD-ben valósítottuk 
     \label{fig:ld_push}
 \end{figure}
 
+A csomag továbbítása után alaphelyzetbe állítjuk a rendszert. (Tehát a két munkahengert visszahúzzuk.)
 \begin{figure}[!hbt]
     \centering
     \includegraphics[width=0.9\textwidth]{res/imgs/reset_active_ld.png}
